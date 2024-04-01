@@ -98,7 +98,20 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
-vim.opt.shell = 'powershell.exe'
+---[[
+vim.cmd [[
+set shell=powershell.exe
+set shellxquote=
+let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
+let &shellquote   = ''
+let &shellpipe    = '| Out-File -Encoding UTF8 %s'
+let &shellredir   = '| Out-File -Encoding UTF8 %s'
+]]
+--]]
+
+-- vim.opt.shell = 'powershell.exe'
+-- vim.opt.shellcmdflag =
+--    "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';"
 
 -- Make line numbers default
 vim.opt.number = true
